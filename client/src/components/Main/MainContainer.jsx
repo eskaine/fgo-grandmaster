@@ -19,7 +19,9 @@ function MainContainer(props) {
 
   return (
     <Container>
-      <Switch>{createRoutes()}</Switch>
+      <Switch>
+        {createRoutes()}
+      </Switch>
     </Container>
   );
 }

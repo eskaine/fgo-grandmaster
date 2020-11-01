@@ -18,7 +18,12 @@ function containerComponent(component) {
 
 function wrapBoxComponent(content) {
   const styles = makeStyles();
-  return <Box key={content} className={styles.wrapBox}>{content}</Box>;
+
+  return (
+    <Box key={content} className={styles.wrapBox}>
+      {content}
+    </Box>
+  );
 }
 
 function withMouseHandlers(Component, props) {
@@ -33,7 +38,8 @@ function withMouseHandlers(Component, props) {
   }
 
   return (
-    <Component {...props}
+    <Component
+      {...props}
       handleMouseEnter={handleMouseEnter}
       handleMouseOut={handleMouseOut}
     />

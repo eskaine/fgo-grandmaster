@@ -6,10 +6,11 @@ import { wrapBoxComponent } from "../../helpers/helperComponents";
 
 function Servants(props) {
   const { title, showList, setList, pageLength, baseParams} = props;
-  const [activeChip, setActiveChip] = useState(baseParams.class.default);
-  const [page, setPage] = useState(0);
+  const [ activeChip, setActiveChip ] = useState(baseParams.class.default);
+  const [ page, setPage ] = useState(0);
 
   function setChip(chip) {
+    setPage(0);
     setList(chip);
     setActiveChip(chip);
   }
@@ -27,6 +28,7 @@ function Servants(props) {
 
   useEffect(() => {
     setActiveChip("All");
+    setPage(0);
   }, [baseParams.regions.default]);
 
   return (

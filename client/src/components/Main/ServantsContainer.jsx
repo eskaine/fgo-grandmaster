@@ -33,7 +33,7 @@ function ServantsContainer({ params, pageTitle }) {
     end = end > filteredList.length ? filteredList.length : end;
 
     return filteredList.slice(start, end).map((servant, i) => {
-      let props = { servant, region: baseParams.regions.default };
+      let props = { servant, page, region: baseParams.regions.default };
       return withMouseHandlers(ProfileCard, props);
     });
   }

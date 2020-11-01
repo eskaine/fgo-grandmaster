@@ -8,14 +8,14 @@ function Home({ pageTitle, genServants }) {
   const styles = makeStyles();
 
   return (
-    <React.Fragment>
+    <Box>
       <Box className={styles.mb5}>
         <Typography variant="h4" color="secondary">
           {pageTitle}
         </Typography>
       </Box>
       {wrapBoxComponent(genServants())}
-    </React.Fragment>
+    </Box>
   );
 }
 
