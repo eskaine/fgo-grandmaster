@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types";
 import { NavLink, useLocation } from "react-router-dom";
 import Navi from "./ui/Navi";
 import { Button } from "@material-ui/core";
+import { searchServants } from "../../utilities/helpers";
 import navStyles from "../../styles/navStyles";
 import styles from "../../styles/styles";
 
-function NaviContainer({lang, params}) {
+function NaviContainer({lang, params, mainData}) {
     const nStyles = navStyles();
     const primaryStyles = styles();
     const location = useLocation();
 
     const { baseParams } = params;
     const [ currentRoute, setCurrentRoute ] = useState(location.pathname);
+    const [ searchValue, setSearchValue ] = useState("");
+    const [ results, setResults ] = useState([]);
+
+    function searchChange(e) {
+      setSearchValue(e.target.value);
+    }
 
     function genRoutes() {
       return baseParams.routes.map((route, i) => {
@@ -25,12 +32,19 @@ function NaviContainer({lang, params}) {
       });
     }
 
-    return <Navi title={baseParams.title} lang={lang} regionList={baseParams.regions.list} genRoutes={genRoutes} />
+    useEffect((res) => {
+      setResults(searchServants(searchValue, mainData));
+    }, [searchValue]);
+
+    return <Navi title={baseParams.title} lang={lang} regionList={baseParams.regions.list} search={{results, searchValue, searchChange}} genRoutes={genRoutes} />
 };
 
 NaviContainer.propTypes = {
   lang: PropTypes.object,
-  params: PropTypes.object
+  params: PropTypes.object,
+  modal: PropTypes.object,
+  servantData: PropTypes.object,
+  mainData: PropTypes.array,
 };
 
 export default NaviContainer;

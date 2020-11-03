@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, Menu, Button} from "@material-ui/core";
+import { Menu, Button} from "@material-ui/core";
 import makeStyles from "../../../styles/navStyles";
 
 function Region({ region, genRegions, anchorEl, handlers }) {
@@ -8,7 +8,7 @@ function Region({ region, genRegions, anchorEl, handlers }) {
   const styles = makeStyles();  
 
   return (
-    <Box className={styles.region}>
+    <React.Fragment>
       <Button className={styles.regionText} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
         Region: {region}
       </Button>
@@ -18,7 +18,7 @@ function Region({ region, genRegions, anchorEl, handlers }) {
         keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
         {genRegions()}
       </Menu>
-    </Box>
+    </React.Fragment>
   );
 }
 

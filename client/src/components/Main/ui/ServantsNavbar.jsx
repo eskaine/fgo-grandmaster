@@ -13,7 +13,7 @@ function ServantsNavbar({ title, pageLength, setPage, genClassBadge }) {
 
   return (
     <Box className={styles.mb5}>
-      <Box className={styles.flexRowSpread}>
+      <Box className={styles.flexRowBetween}>
         <Typography variant="h4" color="secondary">
           {title}
         </Typography>
@@ -21,7 +21,7 @@ function ServantsNavbar({ title, pageLength, setPage, genClassBadge }) {
           shape="rounded" hideNextButton={true} 
           hidePrevButton={true} onClick={pageClick} />
       </Box>
-      <Box className={`${styles.flexRowSpread} ${styles.mt2}`}>
+      <Box className={`${styles.flexRowBetween} ${styles.mt2}`}>
         {genClassBadge()}
       </Box>
     </Box>
