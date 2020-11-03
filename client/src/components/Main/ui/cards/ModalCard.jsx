@@ -40,7 +40,7 @@ function ModalCard({ servant }) {
 
   return (
     <Card variant="outlined" className={styles.modalCard}>
-      <CardActionArea className={styles.modalAction}>
+      <Box className={styles.modalAction}>
         <Slide direction={direction} in={checked} mountOnEnter unmountOnExit>
           <CardMedia className={styles.modalImage}
             image={servant.extraAssets.charaGraph.ascension[imageKeys[key]]} />
@@ -56,7 +56,7 @@ function ModalCard({ servant }) {
             </IconButton>
           </Box>
         </Box>
-      </CardActionArea>
+      </Box>
       <CardContent className={styles.modalContent}>
         <CardTable {...servant} />
       </CardContent>

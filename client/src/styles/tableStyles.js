@@ -19,8 +19,9 @@ const StyledTableCell = withStyles((theme) => ({
 
 const tableStyles = makeStyles((theme) => ({
   tableContainer: {
+    height: "inherit",
     borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0
+    borderBottomLeftRadius: 0,
   },
   tableServantName:{
     padding: "15px 0",
@@ -49,7 +50,7 @@ const tableStyles = makeStyles((theme) => ({
     backgroundColor: `${theme.palette.common.white}  !important`,
     color: `${theme.palette.common.black}  !important`,
     fontSize: 14,
-    height: 120
+    height: 100
   },
   textCenter: {
     textAlign: "center"

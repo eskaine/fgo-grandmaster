@@ -12,6 +12,22 @@ body {
   outline: none;
 }
 
+#myTable {
+  border: 2px solid red;
+}
+
+#myTableBody {
+  border: 2px solid blue;
+}
+
+.t-green {
+  border: 2px solid green;
+}
+
+.t-purple {
+  border: 2px solid purple;
+}
+
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; 
@@ -91,25 +107,3 @@ body {
     opacity: 100%;
   }
 }
-
-// .fade-enter .card {
-//   opacity: 0;
-//   transform: translateX(-100%);
-// }
-// .fade-enter-active .card {
-//   opacity: 1;
-//   transform: translateX(0%);
-// }
-// .fade-exit .card {
-//   opacity: 1;
-//   transform: translateX(0%);
-// }
-// .fade-exit-active .card {
-//   opacity: 0;
-//   transform: translateX(100%);
-  
-// }
-// .fade-enter-active .card,
-// .fade-exit-active .card {
-//   transition: opacity 500ms, transform 500ms;
-// }

@@ -75,21 +75,22 @@ const cardStyles = makeStyles((theme) => ({
     borderRadius: "10px",
     display: "grid",
     gridTemplateColumns: "2fr 3fr",
-
   },
   modalImage: {
-    height: 500,
+    height: "inherit",
     width: 354,
-    marginTop: -25,
   },
   modalImageBox: {
     border: "none",
     borderRadius: "10px",
   },
   modalAction: {
+    position: "relative",
+    height: "inherit",
     zIndex: 3
   },
   modalContent: {
+    height: "inherit",
     backgroundColor: "white",
     zIndex: 5,
     padding: 0,

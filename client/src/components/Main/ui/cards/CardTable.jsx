@@ -1,11 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TableContainer, Table, TableCell, TableBody, TableRow, Paper  } from "@material-ui/core";
+import makeStyles from "../../../../styles/styles";
 import { StyledTableCell, tableStyles } from "../../../../styles/tableStyles";
 import { capitalize } from "../../../../utilities/helpers";
 
 function ServantInfoTable(servant) {
   const styles = tableStyles();
+  const gStyles =makeStyles();
   let np = servant.noblePhantasms;
   np = np[np.length - 1];
 
@@ -20,57 +22,57 @@ function ServantInfoTable(servant) {
       <Table size="small">
         <TableBody>
 
-          <TableRow className={styles.tableServantNameRow}>
+          <TableRow>
             <TableCell colSpan={4} className={styles.tableServantName}>
               {servant.name}
             </TableCell>
           </TableRow>
 
           <TableRow>
-            <StyledTableCell colSpan={1}>ID</StyledTableCell>
-            <StyledTableCell colSpan={1}>{servant.collectionNo}</StyledTableCell>
-            <StyledTableCell colSpan={1}>Class</StyledTableCell>
-            <StyledTableCell colSpan={1}>
+            <StyledTableCell>ID</StyledTableCell>
+            <StyledTableCell>{servant.collectionNo}</StyledTableCell>
+            <StyledTableCell>Class</StyledTableCell>
+            <StyledTableCell>
               {capitalize(servant.className)}
             </StyledTableCell>
           </TableRow>
 
           <TableRow>
-            <StyledTableCell colSpan={1}>Rarity</StyledTableCell>
-            <StyledTableCell colSpan={1}>{servant.rarity}</StyledTableCell>
-            <StyledTableCell colSpan={1}>Cost</StyledTableCell>
-            <StyledTableCell colSpan={1}>{servant.cost}</StyledTableCell>
+            <StyledTableCell>Rarity</StyledTableCell>
+            <StyledTableCell>{servant.rarity}</StyledTableCell>
+            <StyledTableCell>Cost</StyledTableCell>
+            <StyledTableCell>{servant.cost}</StyledTableCell>
           </TableRow>
 
           <TableRow>
-            <StyledTableCell colSpan={1}>Gender</StyledTableCell>
-            <StyledTableCell colSpan={1}>
+            <StyledTableCell>Gender</StyledTableCell>
+            <StyledTableCell>
               {capitalize(servant.gender)}
             </StyledTableCell>
-            <StyledTableCell colSpan={1}>Type</StyledTableCell>
-            <StyledTableCell colSpan={1}>
+            <StyledTableCell>Type</StyledTableCell>
+            <StyledTableCell>
               {servant.type === "enemyCollectionDetail" ? "Enemy" : capitalize(servant.type)}
             </StyledTableCell>
           </TableRow>
 
           <TableRow>
-            <StyledTableCell colSpan={1}>Max Level</StyledTableCell>
-            <StyledTableCell colSpan={1}>{servant.lvMax}</StyledTableCell>
-            <StyledTableCell colSpan={1}>Attribute</StyledTableCell>
-            <StyledTableCell colSpan={1}>
+            <StyledTableCell>Max Level</StyledTableCell>
+            <StyledTableCell>{servant.lvMax}</StyledTableCell>
+            <StyledTableCell>Attribute</StyledTableCell>
+            <StyledTableCell>
               {capitalize(servant.attribute)}
             </StyledTableCell>
           </TableRow>
 
           <TableRow>
-            <StyledTableCell colSpan={1}>Max Attack</StyledTableCell>
-            <StyledTableCell colSpan={1}>{servant.atkMax}</StyledTableCell>
-            <StyledTableCell colSpan={1}>Max HP</StyledTableCell>
-            <StyledTableCell colSpan={1}>{servant.hpMax}</StyledTableCell>
+            <StyledTableCell>Max Attack</StyledTableCell>
+            <StyledTableCell>{servant.atkMax}</StyledTableCell>
+            <StyledTableCell>Max HP</StyledTableCell>
+            <StyledTableCell>{servant.hpMax}</StyledTableCell>
           </TableRow>
 
           <TableRow>
-            <StyledTableCell colSpan={1}>Cards</StyledTableCell>
+            <StyledTableCell>Cards</StyledTableCell>
             <StyledTableCell colSpan={3}>
               {printCards(servant.cards)}
             </StyledTableCell>
@@ -101,12 +103,10 @@ function ServantInfoTable(servant) {
           </TableRow>
 
           <TableRow>
-            <StyledTableCell colSpan={1}>Card</StyledTableCell>
-            <StyledTableCell colSpan={1}>{capitalize(np.card)}</StyledTableCell>
-            <StyledTableCell colSpan={1}>Type</StyledTableCell>
-            <StyledTableCell colSpan={1}>
-              {`${np.rank} ${np.type}`}
-            </StyledTableCell>
+            <StyledTableCell>Card</StyledTableCell>
+            <StyledTableCell>{capitalize(np.card)}</StyledTableCell>
+            <StyledTableCell>Type</StyledTableCell>
+            <StyledTableCell>{np.rank}<br />{np.type}</StyledTableCell>
           </TableRow>
 
         </TableBody>
