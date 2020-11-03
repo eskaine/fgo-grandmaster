@@ -49,8 +49,15 @@ const tableStyles = makeStyles((theme) => ({
   tableDetails: {
     backgroundColor: `${theme.palette.common.white}  !important`,
     color: `${theme.palette.common.black}  !important`,
-    fontSize: 14,
-    height: 100
+    fontSize: 12,
+    height: 90
+  },
+  tableNPTypeRow:{
+    height: 61
+  },
+  tableNPType: {
+    
+    fontSize: 11
   },
   textCenter: {
     textAlign: "center"

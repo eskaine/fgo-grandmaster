@@ -34,9 +34,11 @@ function AppContainer() {
 
   function triggerResponse(res) {
     if(res.status === 200) {
-      setServantData(res.data);
-      setModal(true);
+      setServantData(res.data);   
+    } else {
+      setServantData(mainData[region][servantID - 1]);
     }
+    setModal(true);
   }
 
   async function retrieveData() {

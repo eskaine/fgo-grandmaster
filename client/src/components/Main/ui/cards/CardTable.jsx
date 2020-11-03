@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TableContainer, Table, TableCell, TableBody, TableRow, Paper  } from "@material-ui/core";
-import makeStyles from "../../../../styles/styles";
 import { StyledTableCell, tableStyles } from "../../../../styles/tableStyles";
 import { capitalize } from "../../../../utilities/helpers";
 
-function ServantInfoTable(servant) {
+function ServantInfoTable({ region, servant }) {
   const styles = tableStyles();
-  const gStyles =makeStyles();
   let np = servant.noblePhantasms;
   np = np[np.length - 1];
 
@@ -15,6 +13,13 @@ function ServantInfoTable(servant) {
     return cardList.reduce((string, value) => {
       return `${string} ${capitalize(value)}`;
     }, "");
+  }
+
+  function printNPType() {
+      let str = np.type;
+      str = region === "JP" ? str.split("／") : np.type.split("/");
+        
+      return str.reduce((result, value) => <React.Fragment>{result}<br/>{value}</React.Fragment>);    
   }
 
   return (
@@ -102,11 +107,13 @@ function ServantInfoTable(servant) {
             </StyledTableCell>
           </TableRow>
 
-          <TableRow>
+          <TableRow className={styles.tableNPTypeRow}>
             <StyledTableCell>Card</StyledTableCell>
             <StyledTableCell>{capitalize(np.card)}</StyledTableCell>
             <StyledTableCell>Type</StyledTableCell>
-            <StyledTableCell>{np.rank}<br />{np.type}</StyledTableCell>
+            <StyledTableCell className={styles.tableNPType}>
+              {np.rank}<br />{region === "JP" ? (np.type.length > 4 ? printNPType() : np.type) : (np.type.length > 14 ? printNPType() : np.type)}
+            </StyledTableCell>
           </TableRow>
 
         </TableBody>
@@ -116,6 +123,7 @@ function ServantInfoTable(servant) {
 }
 
 ServantInfoTable.propTypes = {
+  region: PropTypes.string,
   servant: PropTypes.object,
 };
 

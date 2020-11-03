@@ -7,7 +7,7 @@ import { searchServants } from "../../utilities/helpers";
 import navStyles from "../../styles/navStyles";
 import styles from "../../styles/styles";
 
-function NaviContainer({lang, params, mainData}) {
+function NaviContainer({lang, params, modal, mainData}) {
     const nStyles = navStyles();
     const primaryStyles = styles();
     const location = useLocation();
@@ -16,6 +16,15 @@ function NaviContainer({lang, params, mainData}) {
     const [ currentRoute, setCurrentRoute ] = useState(location.pathname);
     const [ searchValue, setSearchValue ] = useState("");
     const [ results, setResults ] = useState([]);
+
+    const props = {
+      lang,
+      title: baseParams.title,  
+      regionList: baseParams.regions.list,
+      search: {results, searchValue, searchChange},
+      openModal: modal.openModal,
+      genRoutes
+    };
 
     function searchChange(e) {
       setSearchValue(e.target.value);
@@ -32,11 +41,14 @@ function NaviContainer({lang, params, mainData}) {
       });
     }
 
-    useEffect((res) => {
+    useEffect(() => {
+      if(searchValue === "") {
+        setResults([]);
+      }
       setResults(searchServants(searchValue, mainData));
     }, [searchValue]);
 
-    return <Navi title={baseParams.title} lang={lang} regionList={baseParams.regions.list} search={{results, searchValue, searchChange}} genRoutes={genRoutes} />
+    return <Navi {...props} />
 };
 
 NaviContainer.propTypes = {

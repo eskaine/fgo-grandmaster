@@ -5,6 +5,7 @@ FGO Grandmaster is a game assistance web application for players of the mobile g
 ## Features
 - Choose between NA or JP region
 - Filter servant list by class
+- Search servant by name, showing the top 5 results
 
 ## Techstack
 - React

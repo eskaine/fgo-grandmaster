@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Card, CardActionArea, CardContent, CardMedia, IconButton, Box, Slide } from "@material-ui/core";
+import { Card, CardContent, CardMedia, IconButton, Box, Slide } from "@material-ui/core";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounded";
 import CardTable from "./CardTable";
 import makeStyles from "../../../../styles/cardStyles";
 
-function ModalCard({ servant }) {
+function ModalCard({ region, servant }) {
   const styles = makeStyles();
   const imageKeys = Object.keys(servant.extraAssets.charaGraph.ascension);
   const [key, setKey] = useState(0);
@@ -58,13 +58,14 @@ function ModalCard({ servant }) {
         </Box>
       </Box>
       <CardContent className={styles.modalContent}>
-        <CardTable {...servant} />
+        <CardTable region={region} servant={servant} />
       </CardContent>
     </Card>
   );
 }
 
 ModalCard.propTypes = {
+  region: PropTypes.string,
   servant: PropTypes.object,
 };
 

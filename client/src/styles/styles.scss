@@ -12,22 +12,6 @@ body {
   outline: none;
 }
 
-#myTable {
-  border: 2px solid red;
-}
-
-#myTableBody {
-  border: 2px solid blue;
-}
-
-.t-green {
-  border: 2px solid green;
-}
-
-.t-purple {
-  border: 2px solid purple;
-}
-
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; 
@@ -47,7 +31,12 @@ body {
 }
 
 .arrows {
-    color: "white" !important;
+    color: white !important;
+}
+
+.search-result:hover {
+  background-color:#82B1FF !important;
+  color: white;
 }
 
 .expand-card {

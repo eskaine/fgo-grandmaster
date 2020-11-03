@@ -4,7 +4,7 @@ import { Box, Modal, Backdrop, Fade, Zoom } from '@material-ui/core';
 import ModalCard from "./cards/ModalCard";
 import makeStyles from "../../../styles/cardStyles";
 
-function ServantModal({ state, closeModal, servantData}) {
+function ServantModal({ region, state, closeModal, servantData}) {
   const styles = makeStyles();
 
   return (
@@ -20,7 +20,7 @@ function ServantModal({ state, closeModal, servantData}) {
         <Fade in={state} timeout={{enter: 1200, exit: 1000}}>
           <Box>
             <Zoom in={state} timeout={1200}>
-              <ModalCard servant={servantData} />
+              <ModalCard region={region} servant={servantData} />
             </Zoom>
           </Box>
         </Fade>
@@ -30,6 +30,7 @@ function ServantModal({ state, closeModal, servantData}) {
 };
 
 ServantModal.propTypes = {
+  region: PropTypes.string,
   state: PropTypes.bool,
   closeModal: PropTypes.func,
   servantData: PropTypes.object,

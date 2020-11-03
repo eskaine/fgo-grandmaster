@@ -31,7 +31,7 @@ export function searchServants(searchValue, data) {
         }
 
         if(servant.name.toLowerCase().includes(searchValue.toLowerCase())) {
-          resultsArr.push({id: servant.collectionNo, name: servant.name, class: servant.className});
+          resultsArr.push({id: servant.collectionNo, name: servant.name});
         }
       }
 

@@ -4,7 +4,7 @@ import { Switch } from "react-router-dom";
 import { Container } from "@material-ui/core";
 import { routedComponent } from "../helpers/helperComponents";
 
-function MainContainer({lang, params, modal, modalData, mainData}) {
+function MainContainer({lang, params, modal, mainData}) {
 
   function createRoutes() {
     return params.baseParams.routes.map(
@@ -30,7 +30,6 @@ MainContainer.propTypes = {
   lang: PropTypes.object,
   params: PropTypes.object,
   modal: PropTypes.object,
-  servantData: PropTypes.object,
   mainData: PropTypes.array,
 };
 

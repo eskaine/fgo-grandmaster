@@ -12,7 +12,7 @@ function App(props) {
   
   return (
     <BrowserRouter>
-      <ServantModal servantData={props.servantData} closeModal={props.modal.closeModal} state={props.modal.modal} />
+      <ServantModal region={props.lang.region} servantData={props.servantData} closeModal={props.modal.closeModal} state={props.modal.modal} />
       <NaviContainer {...props} />
       <MainContainer  {...props} />
       <Footer className={styles.MainContainer} />

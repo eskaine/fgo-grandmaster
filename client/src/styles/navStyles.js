@@ -38,6 +38,9 @@ const navStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  searchResults: {
+    backgroundColor: "red !important"
+  },
   inputRoot: {
     color: 'inherit',
   },

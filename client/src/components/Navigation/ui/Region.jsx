@@ -24,6 +24,7 @@ function Region({ region, genRegions, anchorEl, handlers }) {
 
 Region.propTypes = {
   region: PropTypes.string,
+  genRegions: PropTypes.func,
   anchorEl: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.bool,
