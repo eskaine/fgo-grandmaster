@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const portraitStyle = makeStyles((theme) => ({
+const cardStyles = makeStyles((theme) => ({
   card: {
     boxShadow: `5px 5px 10px 0px rgba(0,0,0,0.2)`,
     borderRadius: "10px",
@@ -64,6 +64,51 @@ const portraitStyle = makeStyles((theme) => ({
     color: theme.palette.common.white,
     pointerEvents: "none",
   },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  modalCard: {
+    maxWidth: 885,
+    height: 500,
+    borderRadius: "10px",
+    display: "grid",
+    gridTemplateColumns: "2fr 3fr",
+
+  },
+  modalImage: {
+    height: 500,
+    width: 354,
+    marginTop: -25,
+  },
+  modalImageBox: {
+    border: "none",
+    borderRadius: "10px",
+  },
+  modalAction: {
+    zIndex: 3
+  },
+  modalContent: {
+    backgroundColor: "white",
+    zIndex: 5,
+    padding: 0,
+    marginLeft: 1
+  },
+  imageScrollFlex: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 250,
+    transform: "translateY(-50%)",
+  },
+  imageScrollPos: {
+    position: "absolute",
+    top: 0,
+    height: 500,
+    width: 354,
+  },
   NA: {
     fontSize: "1.1em",
   },
@@ -74,6 +119,9 @@ const portraitStyle = makeStyles((theme) => ({
     position: "absolute",
     right: "1em",
   },
+  textCenter: {
+    textAlign: "center"
+  },
 }));
 
-export default portraitStyle;
+export default cardStyles;

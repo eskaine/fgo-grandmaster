@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Route } from "react-router-dom";
 import { Container, Box } from "@material-ui/core";
 import makeStyles from "../../styles/styles";
@@ -39,12 +40,32 @@ function withMouseHandlers(Component, props) {
 
   return (
     <Component
+      key={props.servant.collectionNo}
       {...props}
       handleMouseEnter={handleMouseEnter}
       handleMouseOut={handleMouseOut}
     />
   );
 }
+
+routedComponent.propTypes = {
+  route: PropTypes.string,
+  i: PropTypes.number,
+  component: PropTypes.element,
+};
+
+containerComponent.propTypes = {
+  component: PropTypes.element,
+};
+
+wrapBoxComponent.propTypes = {
+  component: PropTypes.array,
+};
+
+withMouseHandlers.propTypes = {
+  component: PropTypes.elementType,
+  props: PropTypes.object,
+};
 
 export {
   routedComponent,

@@ -1,11 +1,15 @@
+function rand(length) {
+    return Math.floor(Math.random() * length);
+}
+
 export function randomServants(length) {
     let max = 10;
     let arr = [];
     
     while(max > 0) {
-        let random = 0;
+        let random = rand(length);
         while(arr.indexOf(random) > -1) {
-            random = Math.floor(Math.random() * length);
+            random = rand(length);
         }
         arr.push(random);
         max--;

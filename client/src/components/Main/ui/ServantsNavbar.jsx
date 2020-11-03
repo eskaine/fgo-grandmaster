@@ -18,7 +18,7 @@ function ServantsNavbar({ title, pageLength, setPage, genClassBadge }) {
           {title}
         </Typography>
         <Pagination className={styles.pagination} count={pageLength}
-          shape="rounded" hideNextButton={true}
+          shape="rounded" hideNextButton={true} 
           hidePrevButton={true} onClick={pageClick} />
       </Box>
       <Box className={`${styles.flexRowSpread} ${styles.mt2}`}>

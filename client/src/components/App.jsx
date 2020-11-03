@@ -6,21 +6,22 @@ import NaviContainer from "./Navigation/NaviContainer";
 import Footer from "./Main/ui/Footer";
 import makeStyles from "../styles/styles";
 
-function App({params, mainData}) {
+function App(props) {
   const styles = makeStyles();
   
   return (
     <BrowserRouter>
-      <NaviContainer params={params} />
-      <MainContainer params={params} mainData={mainData} />
+      <NaviContainer {...props} />
+      <MainContainer  {...props} />
       <Footer className={styles.MainContainer} />
     </BrowserRouter>
   );
 }
 
 App.propTypes = {
+  lang: PropTypes.object,
   params: PropTypes.object,
-  mainData: PropTypes.object,
+  mainData: PropTypes.array,
 };
 
 export default App;

@@ -5,38 +5,56 @@ import makeStyles from "../../../styles/cardStyles";
 
 function ServantCard(props) {
   const styles = makeStyles();
-  const { servant, handleMouseEnter, handleMouseOut } = props;
+  const { region, servant, handleMouseEnter, handleMouseOut, openModal } = props;
   const [checked, setChecked] = useState(false);
-  const servantID = `portrait-${servant.id}`; 
+  const servantID = `portrait-${servant.collectionNo}`; 
 
   // Check and retrieve available image
-  let imageCard = servant.extraAssets.charaGraph.ascension[1];
-  imageCard = !imageCard ? servant.extraAssets.charaGraph.ascension[0] : imageCard;
+  let imageCard = Object.keys(servant.extraAssets.charaGraph.ascension);
+  imageCard = servant.extraAssets.charaGraph.ascension[imageCard[0]];
+
+  function handleClick(e) {
+    openModal(servant.collectionNo);
+  }
 
   useEffect(() => {
     window.requestAnimationFrame(() => {
-      setChecked(true);
+        setChecked(true);
     });
   }, []);
 
+  useEffect(() => {
+      setTimeout(() => {
+        window.requestAnimationFrame(() => {
+          setChecked(true);
+      });
+     }, 2000);
+   
+    return() => {
+          setChecked(false);   
+    }
+  }, [region]);
+
   return (
-    <Zoom in={checked} timeout={2000}>
-      <Card variant="outlined" id={servantID} className={`${styles.portraitCard} ${styles.card} card`} onMouseEnter={() => handleMouseEnter(servantID)} onMouseOut={() => handleMouseOut(servantID)}>
-        <CardActionArea>
-          <CardMedia className={styles.portraitImage} image={imageCard} />
-          <CardContent className={styles.portraitContent} >
-            <Typography className={styles.portraitName}>{servant.name}</Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+    <Zoom in={checked} timeout={{enter: 1000, exit: 500}}>
+       <Card variant="outlined" id={servantID} className={`${styles.portraitCard} ${styles.card} card`} onMouseEnter={() => handleMouseEnter(servantID)} onMouseOut={() => handleMouseOut(servantID)} onClick={handleClick}>
+          <CardActionArea>
+            <CardMedia className={styles.portraitImage} image={imageCard} />
+            <CardContent className={styles.portraitContent} >
+              <Typography className={styles.portraitName}>{servant.name}</Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
     </Zoom>
   );
 };
 
 ServantCard.propTypes = {
-  servant: PropTypes.object
+  region: PropTypes.string,
+  servant: PropTypes.object,
+  handleMouseEnter: PropTypes.func,
+  handleMouseOut: PropTypes.func,
+  openModal: PropTypes.func,
 };
 
 export default ServantCard;
-
-

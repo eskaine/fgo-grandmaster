@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { MenuItem } from "@material-ui/core";
 import Region from "./ui/Region";
 
-function RegionContainer({ regions, setRegion }) {
+function RegionContainer({ lang, regionList }) {
   const [anchorEl, setAnchorEl] = useState(null);
   
   function handleClick(e) {
@@ -12,13 +12,14 @@ function RegionContainer({ regions, setRegion }) {
 
   function handleClose(e) {
     if(e.target.id !== "" ) {
-      setRegion(e.target.id);
+      lang.setRegion(e.target.id);
+      localStorage.setItem("region", e.target.id);
     }
     setAnchorEl(null);
   }
 
   function genRegions() {
-    return regions.list.map((region) => (
+    return regionList.map((region) => (
       <MenuItem id={region} key={region} onClick={handleClose}>
         {region}
       </MenuItem>
@@ -26,13 +27,13 @@ function RegionContainer({ regions, setRegion }) {
   }
 
   return (
-      <Region region={{regions, genRegions}} anchorEl={anchorEl} handlers={{handleClick, handleClose}} />
+      <Region region={lang.region} genRegions={genRegions} anchorEl={anchorEl} handlers={{handleClick, handleClose}} />
   );
 }
 
 RegionContainer.propTypes = {
-  regions: PropTypes.object,
-  setRegion: PropTypes.func
+  lang: PropTypes.object,
+  regionList: PropTypes.array
 };
 
 export default RegionContainer;

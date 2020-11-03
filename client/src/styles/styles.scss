@@ -8,13 +8,52 @@ body {
   overflow-y: scroll;
 }
 
+* {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; 
+}
+
+.arrows-btn {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.arrows-overlay {
+  opacity: 30%;
+}
+
+.arrows-overlay:hover {
+  opacity: 100%;
+  animation: arrowsFadeIn 0.3s ease-out;
+}
+
+.arrows {
+    color: "white" !important;
+}
+
 .expand-card {
-  animation: expand 0.3s ease-out;
-  animation-fill-mode: forwards;
+  -webkit-animation: expand 0.3s ease-out;
+          animation: expand 0.3s ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 .contract-card {
-  animation: contract 0.3s ease-out;
-  animation-fill-mode: forwards;
+  -webkit-animation: contract 0.3s ease-out;
+          animation: contract 0.3s ease-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes expand {
+  from {
+    transform: scale(1, 1);
+  }
+  to {
+    transform: scale(1.05, 1.05);
+  }
 }
 
 @keyframes expand {
@@ -26,12 +65,30 @@ body {
   }
 }
 
+@-webkit-keyframes contract {
+  from {
+    transform: scale(1.05, 1.05);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+
 @keyframes contract {
   from {
     transform: scale(1.05, 1.05);
   }
   to {
     transform: scale(1, 1);
+  }
+}
+
+@keyframes arrowsFadeIn {
+  from {
+    opacity: 30%;
+  }
+  to {
+    opacity: 100%;
   }
 }
 

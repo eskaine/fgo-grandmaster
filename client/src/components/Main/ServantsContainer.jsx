@@ -5,7 +5,8 @@ import ProfileCard from "./ui/ProfileCard";
 import Servants from "./ui/Servants";
 import axios from "axios";
 
-function ServantsContainer({ params, pageTitle }) {
+function ServantsContainer(props) {
+  const { region, params, pageTitle, openModal} = props;
   const { baseParams } = params;
   const { REACT_APP_API_BASIC, REACT_APP_API_BASIC_FILE } = process.env;
   const [ allServantsData, setAllServantsData ] = useState([]);
@@ -33,17 +34,23 @@ function ServantsContainer({ params, pageTitle }) {
     end = end > filteredList.length ? filteredList.length : end;
 
     return filteredList.slice(start, end).map((servant, i) => {
-      let props = { servant, page, region: baseParams.regions.default };
+      let props = { servant, page, region: region, openModal };
       return withMouseHandlers(ProfileCard, props);
     });
   }
 
+  function triggerResponse(res) {
+    if(res.status === 200) {
+      setAllServantsData(res.data);
+      setFilteredList(res.data);
+    }
+  }
+
   async function retrieveData() {
     try {
-      const url = `${REACT_APP_API_BASIC}${baseParams.regions.default}${REACT_APP_API_BASIC_FILE}`;
-      let data = await axios.get(url);
-      setAllServantsData(data.data);
-      setFilteredList(data.data);
+      const url = `${REACT_APP_API_BASIC}${region}${REACT_APP_API_BASIC_FILE}`;
+      let res = await axios.get(url);
+      triggerResponse(res);
     } catch (error) {
       console.error(error);
     }
@@ -51,12 +58,12 @@ function ServantsContainer({ params, pageTitle }) {
 
   useEffect(() => {
     retrieveData();
-  }, [baseParams.regions.default]);
+  }, [region]);
 
   return (
     <React.Fragment>
       {containerComponent(
-        <Servants title={pageTitle} showList={showList} setList={setList}
+        <Servants region={region} title={pageTitle} showList={showList} setList={setList}
           pageLength={numOfPages()} baseParams={baseParams} />
       )}
     </React.Fragment>
@@ -64,8 +71,10 @@ function ServantsContainer({ params, pageTitle }) {
 }
 
 ServantsContainer.propTypes = {
+  region: PropTypes.string,
   params: PropTypes.object,
-  pageTitle: PropTypes.string
+  pageTitle: PropTypes.string,
+  openModal: PropTypes.func
 };
 
 export default ServantsContainer;

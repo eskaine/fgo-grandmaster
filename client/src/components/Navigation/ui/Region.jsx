@@ -3,15 +3,14 @@ import PropTypes from "prop-types";
 import { Box, Menu, Button} from "@material-ui/core";
 import makeStyles from "../../../styles/navStyles";
 
-function Region({ region, anchorEl, handlers }) {
-  const { regions, genRegions } = region;
+function Region({ region, genRegions, anchorEl, handlers }) {
   const { handleClick, handleClose } = handlers;
   const styles = makeStyles();  
 
   return (
     <Box className={styles.region}>
       <Button className={styles.regionText} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        Region: {regions.default}
+        Region: {region}
       </Button>
       <Menu id="simple-menu" anchorEl={anchorEl}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -24,7 +23,7 @@ function Region({ region, anchorEl, handlers }) {
 }
 
 Region.propTypes = {
-  region: PropTypes.object,
+  region: PropTypes.string,
   anchorEl: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.bool,

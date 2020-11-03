@@ -5,7 +5,7 @@ import ServantsNavbar from "./ServantsNavbar";
 import { wrapBoxComponent } from "../../helpers/helperComponents";
 
 function Servants(props) {
-  const { title, showList, setList, pageLength, baseParams} = props;
+  const { region, title, showList, setList, pageLength, baseParams} = props;
   const [ activeChip, setActiveChip ] = useState(baseParams.class.default);
   const [ page, setPage ] = useState(0);
 
@@ -29,7 +29,10 @@ function Servants(props) {
   useEffect(() => {
     setActiveChip("All");
     setPage(0);
-  }, [baseParams.regions.default]);
+    return () =>{
+      window.location.reload();
+    }
+  }, [region]);
 
   return (
       <React.Fragment>
@@ -40,6 +43,7 @@ function Servants(props) {
 }
 
 Servants.propTypes = {
+  region: PropTypes.string,
   title: PropTypes.string,
   showList: PropTypes.func,
   setList: PropTypes.func,

@@ -4,16 +4,16 @@ import RegionContainer from "../RegionContainer";
 import { Container, AppBar, Toolbar, Typography } from "@material-ui/core";
 import makeStyles from "../../../styles/navStyles";
 
-function Navi({ baseParams, setRegion, genRoutes }) {
+function Navi({ lang, title, regionList, genRoutes }) {
   const styles = makeStyles();
 
   return (
     <AppBar>
       <Container>
         <Toolbar>
-          <Typography className={styles.navTitle}>{baseParams.title}</Typography>
+          <Typography className={styles.navTitle}>{title}</Typography>
           {genRoutes()}
-          <RegionContainer regions={baseParams.regions} setRegion={setRegion} />
+          <RegionContainer lang={lang} regionList={regionList} />
         </Toolbar>
       </Container>
     </AppBar>
@@ -21,8 +21,9 @@ function Navi({ baseParams, setRegion, genRoutes }) {
 }
 
 Navi.propTypes = {
-  baseParams: PropTypes.object,
-  setRegion: PropTypes.func,
+  lang: PropTypes.object,
+  title: PropTypes.string,
+  regionList: PropTypes.array,
   genRoutes: PropTypes.func
 };
 
