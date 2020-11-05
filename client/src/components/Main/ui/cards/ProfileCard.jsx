@@ -6,9 +6,10 @@ import makeStyles from "../../../../styles/cardStyles";
 
 function ProfileCard(props) {
   const styles = makeStyles();
-  const { servant, region, page, handleMouseEnter, handleMouseOut, openModal } = props;
-  const servantID = `profile-${servant.collectionNo}`; 
+  const { dataItem, region, page, handleMouseEnter, handleMouseOut, openModal } = props;
+  const dataItemID = `profile-${dataItem.collectionNo}`; 
   const [checked, setChecked] = useState(false);
+  const [textStyles] = useState(styles[region]);
 
   useEffect(() => {
     window.requestAnimationFrame(() => {
@@ -32,16 +33,16 @@ function ProfileCard(props) {
     <Slide direction="left" in={checked} timeout={1200} mountOnEnter unmountOnExit>
       <Box>
         <Fade in={checked} timeout={1200}>
-          <Card variant="outlined" id={servantID} className={`${styles.profileCard} ${styles.card} card`} onMouseEnter={() => handleMouseEnter(servantID)} onMouseOut={() => handleMouseOut(servantID)} onClick={() => openModal(servant.collectionNo)}>
+          <Card variant="outlined" id={dataItemID} className={`${styles.profileCard} ${styles.card} card`} onMouseEnter={() => handleMouseEnter(dataItemID)} onMouseOut={() => handleMouseOut(dataItemID)} onClick={() => openModal(dataItem.collectionNo)}>
             <CardActionArea className={styles.profileLayout}>
-              <CardMedia className={styles.profileImage} image={servant.face} title={servant.name} />
+              <CardMedia className={styles.profileImage} image={dataItem.face} title={dataItem.name} />
               <CardContent className={styles.profileContent}>
                 <Typography className={styles.profileHeader}>
-                  <span>{servant.collectionNo}</span>
-                  <span className={styles.textRight}>{capitalize(servant.className)}</span>
+                  <span>{dataItem.collectionNo}</span>
+                  <span className={styles.textRight}>{capitalize(dataItem.className)}</span>
                 </Typography>
-                <Typography className={`${styles.profileName} ${styles[region]}`}>
-                  {servant.name}
+                <Typography className={`${styles.profileName} ${textStyles}`}>
+                  {dataItem.name}
                 </Typography>
               </CardContent>
             </CardActionArea>
@@ -53,7 +54,7 @@ function ProfileCard(props) {
 };
 
 ProfileCard.propTypes = {
-  servant: PropTypes.object,
+  dataItem: PropTypes.object,
   region: PropTypes.string,
   page: PropTypes.number,
   handleMouseEnter: PropTypes.func,

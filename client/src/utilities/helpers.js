@@ -1,3 +1,5 @@
+import axios from "axios";
+
 function rand(length) {
     return Math.floor(Math.random() * length);
 }
@@ -36,4 +38,20 @@ export function searchServants(searchValue, data) {
       }
 
       return resultsArr;
+}
+
+export async function retrieveData(region , api, callback) {
+  try {
+    const url = `${api.url}${region}${api.dataset}`;
+
+    let res = await axios.get(url);
+
+  if(res.status === 200) {
+    callback(res.data);
+    // data.setAllServantsData(res.data);
+    // data.setFilteredList(res.data);
+  }
+  } catch (error) {
+    console.error(error);
+  }
 }

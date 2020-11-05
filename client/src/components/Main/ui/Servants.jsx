@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Chip } from "@material-ui/core";
-import ServantsNavbar from "./ServantsNavbar";
-import { wrapBoxComponent } from "../../helpers/helperComponents";
+import { withData } from "../../helpers/helperComponents";
 import makeStyles from "../../../styles/styles";
 
+
 function Servants(props) {
-  const { region, title, showList, setList, pageLength, baseParams} = props;
-  const [ activeChip, setActiveChip ] = useState(baseParams.class.default);
+  const { region, pageTitle, showList, pageLength, params} = props;
+  const setList = props.data.setList;
+  const [ activeChip, setActiveChip ] = useState(params.baseParams.class.default);
   const [ page, setPage ] = useState(0);
   const styles = makeStyles();
+  
 
   function setChip(chip) {
     setPage(0);
@@ -18,7 +20,7 @@ function Servants(props) {
   }
 
   function genClassBadge() {
-    return baseParams.class.list.map((servantClass, i) => {
+    return params.baseParams.class.list.map((servantClass, i) => {
       let color = servantClass === activeChip ? "secondary" : "default";
 
       return (
@@ -36,10 +38,20 @@ function Servants(props) {
     }
   }, [region]);
 
+  const newProps = {
+    showList,
+    title: pageTitle,
+    callback: genClassBadge,
+    page: {
+      page,
+      setPage,
+      pageLength,
+    }
+  }
+
   return (
       <React.Fragment>
-        <ServantsNavbar title={title} pageLength={pageLength} setPage={setPage} genClassBadge={genClassBadge} />
-        {wrapBoxComponent(showList(page))}
+        {withData(newProps)}
       </React.Fragment>
   );
 }

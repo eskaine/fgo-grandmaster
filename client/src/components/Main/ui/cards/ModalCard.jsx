@@ -40,16 +40,14 @@ function ModalCard({ region, anchorEl, tabs, servant }) {
 
   function genImagestest() {
     return images && imageKeys.map((key, i) => (
-      <ImagePane i={i} index={index} image={images[key]} direction={direction} /> 
+      <ImagePane i={i} key={i} index={index} image={images[key]} direction={direction} /> 
     ));
   }
 
 
   return (
     <Card variant="outlined" className={`${styles.modalCardBase} ${isArtBtnActive ? styles.modalCardTab2 : styles.modalCardTab1}`}>
-     
       <Box display={(isArtBtnActive && anchorEl) && "none" } className={styles.modalAction}>
-        
         <Box>
         {genImagestest()}
         </Box>

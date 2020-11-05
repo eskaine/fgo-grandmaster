@@ -4,7 +4,8 @@ import ServantsContainer from "../Main/ServantsContainer";
 function appRoutes() {
     const routes  = [
         ["/", "Home", "Featured Servants", HomeContainer],
-        ["/servants", "Servants", "Servants", ServantsContainer]
+        ["/servants", "Servants", "Servants", ServantsContainer],
+        // ["/craftessences", "Craft Essences", "Craft Essences"]
     ];
 
     function newRoute(route, linkName, pageTitle, Component) {

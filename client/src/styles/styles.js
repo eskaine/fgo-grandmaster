@@ -23,19 +23,23 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2.5),
     backgroundColor: theme.palette.primary.main,
   },
-  header: {
-    marginTop: theme.spacing(7),
-    [theme.breakpoints.up('md')]: {
-      marginTop: theme.spacing(0),
-    },
-  },
+  // header: {
+  //   marginTop: theme.spacing(7),
+  //   [theme.breakpoints.up('md')]: {
+  //     marginTop: theme.spacing(0),
+  //   },
+  // },
   servantsUpperNav: {
     display: "flex",
+    marginTop: theme.spacing(7),
     flexDirection: "row",
     alignItems: "center",
     flexWrap: "wrap",
     justifyContent: "space-between",
     marginBottom: theme.spacing(3),
+    [theme.breakpoints.up('md')]: {
+      marginTop: theme.spacing(0),
+    },
   },
   chip: {
     margin: ".5em 1em",

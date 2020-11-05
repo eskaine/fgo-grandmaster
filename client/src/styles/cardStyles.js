@@ -119,8 +119,10 @@ const cardStyles = makeStyles((theme) => ({
     height: 500,
     width: 354,
     position: "relative",
-    height: "inherit",
     zIndex: 3,
+    [theme.breakpoints.up('md')]: {
+      height: "inherit",
+    },
   },
   modalContent: {
     backgroundColor: "white",

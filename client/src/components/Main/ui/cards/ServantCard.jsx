@@ -5,7 +5,8 @@ import makeStyles from "../../../../styles/cardStyles";
 
 function ServantCard(props) {
   const styles = makeStyles();
-  const { region, servant, handleMouseEnter, handleMouseOut, openModal } = props;
+  const { region, handleMouseEnter, handleMouseOut, openModal } = props;
+  const servant = props.dataItem;
   const [checked, setChecked] = useState(false);
   const servantID = `portrait-${servant.collectionNo}`; 
 
@@ -36,7 +37,7 @@ function ServantCard(props) {
   }, [region]);
 
   return (
-    <Zoom in={checked} timeout={{enter: 1000, exit: 500}}>
+    <Zoom in={checked} timeout={1000}>
        <Card variant="outlined" id={servantID} className={`${styles.portraitCard} ${styles.card} card`} onMouseEnter={() => handleMouseEnter(servantID)} onMouseOut={() => handleMouseOut(servantID)} onClick={handleClick}>
           <CardActionArea>
             <CardMedia className={styles.portraitImage} image={imageCard} />

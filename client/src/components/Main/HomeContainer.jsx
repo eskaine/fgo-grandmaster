@@ -19,7 +19,7 @@ function HomeContainer({ region, pageTitle, mainData, openModal }) {
     
     return list.map((value, key) => {
       let servant = mainData[value];
-      return withMouseHandlers(ServantCard, {servant, openModal, region})
+      return withMouseHandlers(ServantCard, {dataItem: servant, openModal, region})
     });
   };
 
