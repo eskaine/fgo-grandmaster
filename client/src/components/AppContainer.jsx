@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import App from "./App";
 import params from "../utilities/params";
+import {retrieveData} from "../utilities/helpers";
 import data_NA from "../data/na_fgo_nice.json";
 import data_JP from "../data/jp_fgo_nice.json";
 
@@ -12,19 +12,23 @@ function AppContainer() {
   const [baseParams, setBaseParams] = useState(params);
   const [region, setRegion] = useState(localRegion ? localRegion : params.regions.default);
   
-  const [ servantID, setServantID ] = useState(0);
-  const [ servantData, setServantData ] = useState({});
+  const [ item, setItem ] = useState({});
+  const [ modalData, setModalData ] = useState({});
   const [ modal, setModal ] = useState(false);
 
   if(localRegion === undefined) {
     localStorage.setItem("region", params.regions.default);
   }
 
-  function openModal(toOpenID) {
-    if(toOpenID === servantID && toOpenID === servantData.collectionNo) {
+  function itemType() {
+    return item.path === "/servants" ? "servant" : "equip";
+  }
+
+  function openModal(newItem) {
+    if(newItem.path === item.path && newItem.itemID === item.itemID) {
       setModal(true);
     } else {
-      setServantID(toOpenID);
+      setItem(newItem);
     }
   };
 
@@ -32,33 +36,28 @@ function AppContainer() {
     setModal(false);
   };
 
-  function triggerResponse(res) {
-    if(res.status === 200) {
-      setServantData(res.data);   
-    } else {
-      setServantData(mainData[region][servantID - 1]);
-    }
-    setModal(true);
-  }
-
-  async function retrieveData() {
-    try {
-      const url = `${REACT_APP_API_NICE}${region}/servant/${servantID}`;
-      let res = await axios.get(url);
-      triggerResponse(res);
-    } catch(error) {
-      console.error(error);
-    }
-  }
-
   useEffect(() => {
-    if(servantID > 0) {
-      retrieveData();
+    if(item.itemID > 0) {
+      const url = `${REACT_APP_API_NICE}${region}/${itemType()}/${item.itemID}`;
+      retrieveData(url, (res) => {
+        if(res.status === 200) {
+          setModalData(res.data);   
+        } else if (item.path === "/servants") {
+          setModalData(mainData[region][item.itemID - 1]);
+        }
+        setModal(true); 
+      });
     }
-  }, [servantID]);
+  }, [item]);
 
   return (
-    <App lang={{region, setRegion}} params={{baseParams, setBaseParams}} modal={{modal, openModal, closeModal}} servantData={servantData} mainData={mainData[region]} />
+    <App 
+      lang={{region, setRegion}} 
+      params={{baseParams, setBaseParams}} 
+      modal={{modal, openModal, closeModal}} 
+      modalData={{type: item.path, data: modalData}} 
+      mainData={mainData[region]} 
+    />
   );
 }
 

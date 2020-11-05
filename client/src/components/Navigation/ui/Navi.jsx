@@ -46,9 +46,11 @@ function Navi(props) {
     <AppBar className={styles.topbar}>
       <Container>
         <Toolbar className={styles.flexRowBetween}>
-          <Box className={styles.inline}>
+          <Box className={styles.mainNav}>
             <Typography className={nStyles.navTitle}>{title}</Typography>
-            {genRoutes()}
+            <Box className={styles.inline}>
+              {genRoutes()}
+            </Box>
           </Box>
           <Box className={styles.inline}>
             <div className={nStyles.search}>

@@ -5,12 +5,11 @@ import Servants from "./ui/Servants";
 import {retrieveData } from "../../utilities/helpers";
 
 function ServantsContainer(props) {
-  const {region } = props;
-  const api = { url: process.env.REACT_APP_API_BASIC, dataset: process.env.REACT_APP_API_BASIC_SERVANT};
+  const { region } = props;
+  const url = `${process.env.REACT_APP_API_BASIC}${region}${process.env.REACT_APP_API_BASIC_SERVANT}`;
   const [ allServantsData, setAllServantsData ] = useState([]);
   const [ filteredList, setFilteredList ] = useState([]);
-  const newProps = {...props, data: { list: filteredList, setList, setAllServantsData}};
-
+  const newProps = {...props, data: filteredList, list : { setList, setAllServantsData }};
 
   function showFilteredList(activeChip) {
     return allServantsData.filter(
@@ -24,7 +23,11 @@ function ServantsContainer(props) {
   }
 
   useEffect(() => {
-    retrieveData(region, api, (data) => {
+    retrieveData(url, (res) => {
+      let data = res.data;
+      if(res.status !== 200) {
+        data = props.mainData[region];
+      } 
       setAllServantsData(data);
       setFilteredList(data);
     });

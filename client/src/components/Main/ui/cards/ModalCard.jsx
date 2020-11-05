@@ -3,17 +3,19 @@ import PropTypes from "prop-types";
 import { Card, CardContent, IconButton, Box } from "@material-ui/core";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import ArrowForwardIosRoundedIcon from "@material-ui/icons/ArrowForwardIosRounded";
-import CardTable from "./subCardsCom/CardTable";
+import ServantCardTable from "./subCardsCom/ServantCardTable";
+import EssenceCardTable from "./subCardsCom/EssenceCardTable";
 import makeStyles from "../../../../styles/cardStyles";
 import ImagePane from "./subCardsCom/ImagePane";
 
-function ModalCard({ region, anchorEl, tabs, servant }) {
-  const styles = makeStyles();
-  const images = servant.extraAssets.charaGraph.ascension;
-  const imageKeys =  images && Object.keys(images);
+function ModalCard({ region, anchorEl, tabs, modalData }) {
+  const {type, data} = modalData;
   const { isArtBtnActive, isInfoBtnActive } = tabs;
+  const images = type === "/servants" ? data.extraAssets.charaGraph.ascension: data.extraAssets.charaGraph.equip;
+  const imageKeys =  images && Object.keys(images);
   const [ index, setIndex ] = useState(0);
   const [ direction, setDirection ] = useState("left");
+  const styles = makeStyles();
 
   function setSlide(inDir, outDir) {
     setDirection(outDir);
@@ -38,18 +40,17 @@ function ModalCard({ region, anchorEl, tabs, servant }) {
     setSlide("left", "right");
   }
 
-  function genImagestest() {
+  function genImageTabs() {
     return images && imageKeys.map((key, i) => (
       <ImagePane i={i} key={i} index={index} image={images[key]} direction={direction} /> 
     ));
   }
 
-
   return (
     <Card variant="outlined" className={`${styles.modalCardBase} ${isArtBtnActive ? styles.modalCardTab2 : styles.modalCardTab1}`}>
       <Box display={(isArtBtnActive && anchorEl) && "none" } className={styles.modalAction}>
         <Box>
-        {genImagestest()}
+        {genImageTabs()}
         </Box>
         <Box display={imageKeys.length === 1 && "none"}
           className={`${styles.imageScrollPos} arrows-overlay`} >
@@ -64,7 +65,9 @@ function ModalCard({ region, anchorEl, tabs, servant }) {
         </Box>
       </Box>
       <CardContent display={(isInfoBtnActive && anchorEl) && "none" } className={styles.modalContent}>
-        <CardTable region={region} servant={servant} />
+        {type !== "/craftessences" ? 
+          <ServantCardTable region={region} servant={data} /> : <EssenceCardTable region={region} ce={data} />
+        }
       </CardContent>
     </Card>
   );

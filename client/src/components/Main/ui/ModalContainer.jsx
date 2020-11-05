@@ -4,7 +4,7 @@ import { Box, Modal, Backdrop, Fade, Zoom, ButtonGroup, Button } from "@material
 import ModalCard from "./cards/ModalCard";
 import makeStyles from "../../../styles/cardStyles";
 
-function ServantModal({ region, state, closeModal, servantData }) {
+function ModalContainer({ region, state, closeModal, modalData }) {
   const styles = makeStyles();
   const [isArtBtnActive, setIsArtBtnActive] = useState(false);
   const [isInfoBtnActive, setIsInfoBtnActive] = useState(true);
@@ -18,8 +18,7 @@ function ServantModal({ region, state, closeModal, servantData }) {
   function modalTabs(state, tabText) {
     let classes = state ?  { root: styles.primaryBtn } : { root: styles.disabledBtn };
 
-
-  return state ? <Button classes={classes} onClick={handleClick}>{tabText}</Button> : <Button disabled classes={classes} onClick={handleClick}>{tabText}</Button>;
+    return state ? <Button classes={classes} onClick={handleClick}>{tabText}</Button> : <Button disabled classes={classes} onClick={handleClick}>{tabText}</Button>;
   }
 
   return (
@@ -38,18 +37,14 @@ function ServantModal({ region, state, closeModal, servantData }) {
           <Box>
             <Zoom in={state} timeout={1200}>
               <Box>
-                <ButtonGroup
-                  variant="contained"
-                  color="primary"
-                  ref={anchorRef}
+                <ButtonGroup variant="contained"
+                  color="primary" ref={anchorRef}
                   className={styles.mobileModalNav}
-                  aria-label="contained primary button group"
-                >
-                  {modalTabs(isArtBtnActive, "Ascension Art")}
-                  {modalTabs(isInfoBtnActive, "Servant Info")}
-
+                  aria-label="contained primary button group">
+                  {modalTabs(isArtBtnActive, "Art")}
+                  {modalTabs(isInfoBtnActive, "Stats")}
                 </ButtonGroup>
-                <ModalCard region={region} anchorEl={anchorRef.current} tabs={{isArtBtnActive, isInfoBtnActive}} servant={servantData} />
+                <ModalCard region={region} anchorEl={anchorRef.current} tabs={{isArtBtnActive, isInfoBtnActive}} modalData={modalData} />
               </Box>
             </Zoom>
           </Box>
@@ -59,11 +54,11 @@ function ServantModal({ region, state, closeModal, servantData }) {
   );
 }
 
-ServantModal.propTypes = {
+ModalContainer.propTypes = {
   region: PropTypes.string,
   state: PropTypes.bool,
   closeModal: PropTypes.func,
   servantData: PropTypes.object,
 };
 
-export default ServantModal;
+export default ModalContainer;

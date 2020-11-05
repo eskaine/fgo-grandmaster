@@ -55,16 +55,16 @@ function withDataContainer(Component, props) {
   const { baseParams } = params;
 
   function numOfPages() {
-    let pages = Math.round(data.list.length / baseParams.maxPerPage);
+    let pages = Math.round(data.length / baseParams.maxPerPage);
     return pages > 1 ? pages : 0;
   }
 
   function showList(page) {
     let start = page * baseParams.maxPerPage;
     let end = (page + 1) * baseParams.maxPerPage;
-    end = end > data.list.length ? data.list.length : end;
+    end = end > data.length ? data.length : end;
 
-    return data.list.slice(start, end).map((dataItem, i) => {
+    return data.slice(start, end).map((dataItem, i) => {
       let props = { dataItem, page, region: region, openModal };
       return withMouseHandlers(ProfileCard, props);
     });
@@ -95,7 +95,7 @@ function withData(props) {
           hidePrevButton={true} onClick={pageClick} />
       </Box>
       <Box className={`${styles.flexRowBetween} ${styles.mb4}`}>
-        {callback()}
+        {callback && callback()}
       </Box>
         {wrapBoxComponent(showList(page))}
       </React.Fragment>

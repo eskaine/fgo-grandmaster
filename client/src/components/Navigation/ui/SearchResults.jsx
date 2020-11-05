@@ -9,7 +9,10 @@ function SearchResults({ search, open, anchorEl, handlers }) {
   function handleResultClick(e, servantID) {
     search.searchChange({target: {value: ""}});
     handleClose(e);
-    openModal(servantID);
+    openModal({
+      path: "/servants",
+      itemID: servantID
+    });
   }
 
   function showResults() {

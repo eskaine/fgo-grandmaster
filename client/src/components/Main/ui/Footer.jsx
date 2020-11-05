@@ -9,7 +9,10 @@ function Footer() {
     <Box className={styles.footer}>
       <Container className={styles.flexRowBetween}>
         <Typography display="inline" className={styles.textWhite}>
-        eskaine © FGO Grandmaster 2020
+          <Link href="https://github.com/eskaine/fgo-grandmaster" className={`${styles.textWhite} ${styles.cursor}`}>
+          eskaine
+          </Link>
+          &nbsp;© FGO Grandmaster 2020
         </Typography>
         <Typography display="inline" className={styles.textWhite}>
           <Link href="https://www.fate-go.jp/" className={`${styles.textWhite} ${styles.cursor}`}>
@@ -22,4 +25,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default Footer; //

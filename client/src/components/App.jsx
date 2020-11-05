@@ -1,18 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { BrowserRouter } from "react-router-dom"; 
+import ModalContainer from "./Main/ui/ModalContainer";
 import MainContainer from "./Main/MainContainer";
 import NaviContainer from "./Navigation/NaviContainer";
 import Footer from "./Main/ui/Footer";
 import makeStyles from "../styles/styles";
-import ServantModal from "./Main/ui/ServantModal";
 
 function App(props) {
   const styles = makeStyles();
   
   return (
     <BrowserRouter>
-      <ServantModal region={props.lang.region} servantData={props.servantData} closeModal={props.modal.closeModal} state={props.modal.modal} />
+      <ModalContainer region={props.lang.region} modalData={props.modalData} closeModal={props.modal.closeModal} state={props.modal.modal} />
       <NaviContainer {...props} />
       <MainContainer  {...props} />
       <Footer className={styles.MainContainer} />

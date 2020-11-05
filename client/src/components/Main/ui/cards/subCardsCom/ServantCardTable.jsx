@@ -4,7 +4,7 @@ import { TableContainer, Table, TableCell, TableBody, TableRow, Paper  } from "@
 import { StyledTableCell, tableStyles } from "../../../../../styles/tableStyles";
 import { capitalize } from "../../../../../utilities/helpers";
 
-function ServantInfoTable({ region, servant }) {
+function ServantCardTable({ region, servant }) {
   const styles = tableStyles();
   let np = servant.noblePhantasms;
   np = np[np.length - 1];
@@ -28,7 +28,7 @@ function ServantInfoTable({ region, servant }) {
         <TableBody>
 
           <TableRow>
-            <TableCell colSpan={4} className={styles.tableServantName}>
+            <TableCell colSpan={4} className={styles.tableHeader}>
               {servant.name}
             </TableCell>
           </TableRow>
@@ -85,7 +85,7 @@ function ServantInfoTable({ region, servant }) {
 
           <TableRow>
             <TableCell colSpan={4} className={styles.tableNPHeader}>
-              Noble Phantasm
+            Noble Phantasm
             </TableCell>
           </TableRow>
 
@@ -122,9 +122,9 @@ function ServantInfoTable({ region, servant }) {
   );
 }
 
-ServantInfoTable.propTypes = {
+ServantCardTable.propTypes = {
   region: PropTypes.string,
   servant: PropTypes.object,
 };
 
-export default ServantInfoTable;
+export default ServantCardTable;

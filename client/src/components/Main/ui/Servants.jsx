@@ -4,15 +4,13 @@ import { Chip } from "@material-ui/core";
 import { withData } from "../../helpers/helperComponents";
 import makeStyles from "../../../styles/styles";
 
-
 function Servants(props) {
   const { region, pageTitle, showList, pageLength, params} = props;
-  const setList = props.data.setList;
+  const setList = props.list.setList;
   const [ activeChip, setActiveChip ] = useState(params.baseParams.class.default);
   const [ page, setPage ] = useState(0);
   const styles = makeStyles();
   
-
   function setChip(chip) {
     setPage(0);
     setList(chip);
@@ -34,7 +32,7 @@ function Servants(props) {
     setActiveChip("All");
     setPage(0);
     return () =>{
-      window.location.reload();
+      // window.location.reload();
     }
   }, [region]);
 

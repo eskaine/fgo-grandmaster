@@ -10,12 +10,14 @@ function ServantCard(props) {
   const [checked, setChecked] = useState(false);
   const servantID = `portrait-${servant.collectionNo}`; 
 
-  // Check and retrieve available image
   let imageCard = Object.keys(servant.extraAssets.charaGraph.ascension);
   imageCard = servant.extraAssets.charaGraph.ascension[imageCard[0]];
 
   function handleClick(e) {
-    openModal(servant.collectionNo);
+    openModal({
+      path: "/servants",
+      itemID: servant.collectionNo
+    });
   }
 
   useEffect(() => {
