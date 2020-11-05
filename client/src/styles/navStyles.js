@@ -46,7 +46,6 @@ const navStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -55,6 +54,7 @@ const navStyles = makeStyles((theme) => ({
     },
   },
   regionText: {
+    width: 160,
     textTransform: "none",
     color: theme.palette.common.white,
     fontSize: "1.2em",

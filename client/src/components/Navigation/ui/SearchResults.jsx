@@ -13,8 +13,8 @@ function SearchResults({ search, open, anchorEl, handlers }) {
   }
 
   function showResults() {
-    return search.results.map((servant) => (
-      <MenuItem className="search-result" onClick={(e) => handleResultClick(e, servant.id)}>
+    return search.results.map((servant, i) => (
+      <MenuItem key={i} className="search-result" onClick={(e) => handleResultClick(e, servant.id)}>
         {servant.name}
       </MenuItem>
     ));

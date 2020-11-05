@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Switch } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
 import { Container } from "@material-ui/core";
 import { routedComponent } from "../helpers/helperComponents";
 
@@ -21,6 +21,7 @@ function MainContainer({lang, params, modal, mainData}) {
     <Container>
       <Switch>
         {createRoutes()}
+        <Redirect to="/" />
       </Switch>
     </Container>
   );

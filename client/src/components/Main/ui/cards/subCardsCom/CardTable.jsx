@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TableContainer, Table, TableCell, TableBody, TableRow, Paper  } from "@material-ui/core";
-import { StyledTableCell, tableStyles } from "../../../../styles/tableStyles";
-import { capitalize } from "../../../../utilities/helpers";
+import { StyledTableCell, tableStyles } from "../../../../../styles/tableStyles";
+import { capitalize } from "../../../../../utilities/helpers";
 
 function ServantInfoTable({ region, servant }) {
   const styles = tableStyles();

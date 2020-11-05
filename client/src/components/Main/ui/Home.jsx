@@ -8,7 +8,7 @@ function Home({ pageTitle, genServants }) {
   const styles = makeStyles();
 
   return (
-    <Box>
+    <Box className={`${styles.header} ${styles.textCenter}`}>
       <Box className={styles.mb5}>
         <Typography variant="h4" color="secondary">
           {pageTitle}

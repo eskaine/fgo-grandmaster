@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useHistory } from "react-router-dom";
 import Navi from "./ui/Navi";
 import { Button } from "@material-ui/core";
 import { searchServants } from "../../utilities/helpers";
@@ -11,6 +11,7 @@ function NaviContainer({lang, params, modal, mainData}) {
     const nStyles = navStyles();
     const primaryStyles = styles();
     const location = useLocation();
+    const history = useHistory();
 
     const { baseParams } = params;
     const [ currentRoute, setCurrentRoute ] = useState(location.pathname);
@@ -32,8 +33,8 @@ function NaviContainer({lang, params, modal, mainData}) {
 
     function genRoutes() {
       return baseParams.routes.map((route, i) => {
-        let textColor = route.route === currentRoute ? nStyles.active : primaryStyles.textWhite;
-    
+        let textColor = route.route === currentRoute ? nStyles.active : (history.action === "REPLACE" && route.linkName === "Home" ? nStyles.active : primaryStyles.textWhite);
+
         return (<NavLink key={`route-${i}`} to={route.route} className={nStyles.navLink} 
           onClick={() => setCurrentRoute(route.route)}>
           <Button className={`${nStyles.navButton} ${textColor}`}>{route.linkName}</Button>

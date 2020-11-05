@@ -9,10 +9,8 @@ import "fontsource-roboto";
 require("dotenv").config();
 
 ReactDOM.render(
-  <React.StrictMode>
     <ThemeProvider theme={theme}>
       <AppContainer />
-    </ThemeProvider>
-  </React.StrictMode>,
+    </ThemeProvider>,
   document.getElementById("root")
 );

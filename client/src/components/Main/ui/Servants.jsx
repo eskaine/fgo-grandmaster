@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 import { Chip } from "@material-ui/core";
 import ServantsNavbar from "./ServantsNavbar";
 import { wrapBoxComponent } from "../../helpers/helperComponents";
+import makeStyles from "../../../styles/styles";
 
 function Servants(props) {
   const { region, title, showList, setList, pageLength, baseParams} = props;
   const [ activeChip, setActiveChip ] = useState(baseParams.class.default);
   const [ page, setPage ] = useState(0);
+  const styles = makeStyles();
 
   function setChip(chip) {
     setPage(0);
@@ -20,7 +22,7 @@ function Servants(props) {
       let color = servantClass === activeChip ? "secondary" : "default";
 
       return (
-        <Chip key={i} id={servantClass} clickable
+        <Chip key={i} id={servantClass} clickable className={styles.chip}
           label={servantClass} color={color} onClick={() => setChip(servantClass)} />
       );
     });

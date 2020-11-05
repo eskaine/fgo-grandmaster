@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {randomServants} from "../../utilities/helpers";
 import { containerComponent, withMouseHandlers } from "../helpers/helperComponents";
-import ServantCard from "./ui/ServantCard";
+import ServantCard from "./ui/cards/ServantCard";
 import Home from "./ui/Home";
 
 function HomeContainer({ region, pageTitle, mainData, openModal }) {

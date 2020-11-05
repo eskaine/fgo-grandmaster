@@ -24,12 +24,11 @@ const tableStyles = makeStyles((theme) => ({
     borderBottomLeftRadius: 0,
   },
   tableServantName:{
-    padding: "15px 0",
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 15,
     backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
   },
   tableNPHeader: {
     backgroundColor: theme.palette.primary.main,
@@ -50,7 +49,7 @@ const tableStyles = makeStyles((theme) => ({
     backgroundColor: `${theme.palette.common.white}  !important`,
     color: `${theme.palette.common.black}  !important`,
     fontSize: 12,
-    height: 90
+    height: 96
   },
   tableNPTypeRow:{
     height: 61

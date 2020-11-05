@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Card, CardActionArea, CardContent, CardMedia, Typography, Zoom } from "@material-ui/core";
-import makeStyles from "../../../styles/cardStyles";
+import makeStyles from "../../../../styles/cardStyles";
 
 function ServantCard(props) {
   const styles = makeStyles();

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Card, CardActionArea, CardContent, CardMedia, Typography, Slide, Fade, Box } from '@material-ui/core';
-import { capitalize} from "../../../utilities/helpers";
-import makeStyles from "../../../styles/cardStyles";
+import { capitalize} from "../../../../utilities/helpers";
+import makeStyles from "../../../../styles/cardStyles";
 
 function ProfileCard(props) {
   const styles = makeStyles();

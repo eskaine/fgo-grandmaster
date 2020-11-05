@@ -5,6 +5,12 @@ export default makeStyles((theme) => ({
     paddingTop: theme.spacing(12),
     minHeight: "calc(100vh - 104px)",
   },
+  topbar: {
+    [theme.breakpoints.down('md')]: {
+      paddingTop: 10,
+      paddingBottom: 20,
+    },
+  },
   wrapBox: {
     display: "flex",
     flexDirection: "row",
@@ -17,11 +23,25 @@ export default makeStyles((theme) => ({
     padding: theme.spacing(2.5),
     backgroundColor: theme.palette.primary.main,
   },
-  textWhite: {
-    color: theme.palette.common.white,
+  header: {
+    marginTop: theme.spacing(7),
+    [theme.breakpoints.up('md')]: {
+      marginTop: theme.spacing(0),
+    },
   },
-  cursor: {
-    pointer: "cursor",
+  servantsUpperNav: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginBottom: theme.spacing(3),
+  },
+  chip: {
+    margin: ".5em 1em",
+    [theme.breakpoints.up('md')]: {
+      margin: 0,
+    },
   },
   pagination: {
     backgroundColor: "rgba(255, 255, 255, 0.3)",
@@ -31,16 +51,40 @@ export default makeStyles((theme) => ({
   flexRowBetween: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    [theme.breakpoints.up('md')]: {
+      justifyContent: "space-between",
+    },
   },
   inline: {
+    width: "100%",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
+    [theme.breakpoints.up('md')]: {
+      width: "fit-content",
+    },
+  },
+  textCenter: {
+    textAlign: "center",
+    [theme.breakpoints.up('md')]: {
+      textAlign: "left"
+    },
+  },
+  textWhite: {
+    color: theme.palette.common.white,
+  },
+  cursor: {
+    pointer: "cursor",
   },
   mb5: {
     marginBottom: theme.spacing(5),
+  },
+  mb4: {
+    marginBottom: theme.spacing(4),
   },
   mt2: {
     marginTop: theme.spacing(2),

@@ -69,15 +69,46 @@ const cardStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  modalCard: {
-    maxWidth: 885,
-    height: 500,
+  modalCardBase: {
+    maxWidth: 354,
     borderRadius: "10px",
+    display: "flex",
+    flexDirection: "column",
+    [theme.breakpoints.up('md')]: {
+      maxWidth: 885,
+      display: "grid",
+      gridTemplateColumns: "2fr 3fr",
+    },
+  },
+  modalCardTab1: {
+    height: 500,
+    [theme.breakpoints.up('md')]: {
+      height: 500,
+    },
+  },
+  modalCardTab2: {
+    height: "fit-content",
+    [theme.breakpoints.up('md')]: {
+      height: 500,
+    },
+  },
+  mobileModalNav: {
     display: "grid",
-    gridTemplateColumns: "2fr 3fr",
+    gridTemplateColumns: "1fr 1fr",
+    [theme.breakpoints.up('md')]: {
+      display: "none",
+    },
+  },
+  disabledBtn: {
+    backgroundColor: `${theme.palette.primary.main} !important`,
+    color: `${theme.palette.common.white} !important`
+  },
+  primaryBtn: {
+    backgroundColor: `${theme.palette.common.white} !important`,
+    color: `${theme.palette.secondary.main} !important`
   },
   modalImage: {
-    height: "inherit",
+    height: 500,
     width: 354,
   },
   modalImageBox: {
@@ -85,16 +116,21 @@ const cardStyles = makeStyles((theme) => ({
     borderRadius: "10px",
   },
   modalAction: {
+    height: 500,
+    width: 354,
     position: "relative",
     height: "inherit",
-    zIndex: 3
+    zIndex: 3,
   },
   modalContent: {
-    height: "inherit",
     backgroundColor: "white",
     zIndex: 5,
     padding: 0,
-    marginLeft: 1
+    marginLeft: 1,
+    paddingBottom: "0 !important",
+    [theme.breakpoints.up('md')]: {
+      height: "inherit",
+    },
   },
   imageScrollFlex: {
     display: "flex",

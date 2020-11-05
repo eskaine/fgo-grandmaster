@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { containerComponent, withMouseHandlers } from "../helpers/helperComponents";
-import ProfileCard from "./ui/ProfileCard";
+import ProfileCard from "./ui/cards/ProfileCard";
 import Servants from "./ui/Servants";
 import axios from "axios";
 
 function ServantsContainer(props) {
   const { region, params, pageTitle, openModal} = props;
   const { baseParams } = params;
-  const { REACT_APP_API_BASIC, REACT_APP_API_BASIC_FILE } = process.env;
+  const { REACT_APP_API_BASIC, REACT_APP_API_BASIC_SERVANT } = process.env;
   const [ allServantsData, setAllServantsData ] = useState([]);
   const [ filteredList, setFilteredList ] = useState([]);
 
@@ -48,7 +48,7 @@ function ServantsContainer(props) {
 
   async function retrieveData() {
     try {
-      const url = `${REACT_APP_API_BASIC}${region}${REACT_APP_API_BASIC_FILE}`;
+      const url = `${REACT_APP_API_BASIC}${region}${REACT_APP_API_BASIC_SERVANT}`;
       let res = await axios.get(url);
       triggerResponse(res);
     } catch (error) {

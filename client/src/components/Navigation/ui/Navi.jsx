@@ -43,7 +43,7 @@ function Navi(props) {
   }, [open]);
 
   return (
-    <AppBar>
+    <AppBar className={styles.topbar}>
       <Container>
         <Toolbar className={styles.flexRowBetween}>
           <Box className={styles.inline}>
