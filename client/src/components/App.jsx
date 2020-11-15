@@ -11,7 +11,7 @@ function App(props) {
   const styles = makeStyles();
   
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/fgo">
       <ModalContainer region={props.lang.region} modalData={props.modalData} closeModal={props.modal.closeModal} state={props.modal.modal} />
       <NaviContainer {...props} />
       <MainContainer  {...props} />
